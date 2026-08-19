@@ -325,8 +325,31 @@
 
   <script>
     // ─── CONFIGURATION ──────────────────────────────────────
-    // Your Google Sheet CSV URL
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8Uvdq-_DOC-8rSYUPaLUTxpCBO1HlGG9S3VnRjkPWXqnFKHuhvHVjyKn0_TK7_bNqMlUJCWP7pGy_/pub?output=csv';
+    // ────────────────────────────────────────────────────────
+
+    // ─── ICON MAPPING ──────────────────────────────────────
+    function getIcon(category) {
+      const map = {
+        'Development': 'fa-code',
+        'Textures': 'fa-palette',
+        'AI': 'fa-robot',
+        'Asset': 'fa-cube',
+        'Generator': 'fa-brain',
+        'Material': 'fa-image',
+        'Tool': 'fa-tools',
+        'Converter': 'fa-exchange-alt',
+        'Design': 'fa-pencil-ruler',
+        '3D': 'fa-cube',
+        'Model': 'fa-shapes'
+      };
+      for (const [key, icon] of Object.entries(map)) {
+        if (category.toLowerCase().includes(key.toLowerCase())) {
+          return icon;
+        }
+      }
+      return 'fa-link';
+    }
     // ────────────────────────────────────────────────────────
 
     // ─── FETCH & DISPLAY ──────────────────────────────────
@@ -383,10 +406,11 @@
         // Render
         let html = '';
         for (const [category, items] of Object.entries(categories)) {
+          const iconClass = getIcon(category);
           html += `
             <div class="glass-card resource-category" data-category="${category}">
               <div class="category-title">
-                <i class="fas fa-link"></i>
+                <i class="fas ${iconClass}"></i>
                 ${category}
                 <span class="badge">${items.length}</span>
               </div>
@@ -439,10 +463,16 @@
         category.style.display = (categoryVisibleCount === 0) ? "none" : "block";
       });
 
-      const noResults = document.querySelector('.no-results');
-      if (noResults) {
-        noResults.style.display = (totalVisible === 0 && input.length > 0) ? "block" : "none";
+      // Show/hide "no results" message
+      let noResults = document.querySelector('.no-results');
+      if (!noResults) {
+        // Create if it doesn't exist
+        noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.innerHTML = '<i class="fas fa-box-open"></i> No matching resources found.';
+        document.getElementById('bookmarksContainer').appendChild(noResults);
       }
+      noResults.style.display = (totalVisible === 0 && input.length > 0) ? "block" : "none";
     }
 
     // ─── LOAD ON START ─────────────────────────────────────
