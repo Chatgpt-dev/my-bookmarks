@@ -91,7 +91,7 @@
       text-transform: uppercase;
     }
 
-    /* --- Search Bar (Hulu Inspired) --- */
+    /* --- Search Bar --- */
     .search-box {
       position: relative;
       min-width: 260px;
@@ -135,7 +135,7 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(168, 144, 184, 0.1);
     }
 
-    /* --- Glassmorphism Card (Dark Hulu Style) --- */
+    /* --- Glassmorphism Card --- */
     .glass-card {
       background: rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(16px) saturate(180%);
@@ -190,7 +190,7 @@
       gap: 0.9rem;
     }
 
-    /* --- Bookmark Item (Hulu Style Tile) --- */
+    /* --- Bookmark Item --- */
     .bookmark-item {
       background: rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(6px);
@@ -203,7 +203,6 @@
       align-items: center;
       gap: 0.9rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-      cursor: default;
     }
 
     .bookmark-item:hover {
@@ -236,29 +235,18 @@
       color: #d4c0e0;
     }
 
-    .bookmark-item .url-hint {
-      font-weight: 400;
-      color: #5a4a6a;
-      font-size: 0.65rem;
-      letter-spacing: 0.3px;
-      white-space: nowrap;
-      opacity: 0.6;
-    }
-
-    /* --- No Results --- */
-    .no-results {
-      display: none;
+    /* --- Loading & No Results --- */
+    .loading, .no-results {
       color: #6a5a7a;
       text-align: center;
       padding: 2.5rem;
-      font-style: italic;
       background: rgba(255, 255, 255, 0.03);
       border-radius: 1.5rem;
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .no-results i {
+    .loading i, .no-results i {
       font-size: 2rem;
       display: block;
       margin-bottom: 0.5rem;
@@ -293,7 +281,6 @@
       .header-group { flex-direction: column; align-items: stretch; gap: 1rem; }
       .search-box { max-width: 100%; min-width: 0; }
       .bookmark-grid { grid-template-columns: 1fr; }
-      .bookmark-item .url-hint { display: none; }
     }
 
     @media (max-width: 480px) {
@@ -305,7 +292,7 @@
 <body>
 
   <div class="container">
-    <!-- Header: Hulu Style -->
+    <!-- Header -->
     <div class="header-group">
       <div class="header-left">
         <div class="logo-icon">
@@ -322,68 +309,12 @@
       </div>
     </div>
 
-    <!-- Category 1 -->
-    <div class="glass-card resource-category">
-      <div class="category-title">
-        <i class="fas fa-robot"></i> AI &amp; Asset Generators
-        <span class="badge">3</span>
+    <!-- Dynamic Content -->
+    <div id="bookmarksContainer">
+      <div class="loading">
+        <i class="fas fa-spinner fa-pulse"></i>
+        Loading your bookmarks...
       </div>
-      <div class="bookmark-grid">
-        <div class="bookmark-item">
-          <span class="bookmark-icon"><i class="fas fa-user-astronaut"></i></span>
-          <a href="https://www.mixamo.com/" target="_blank" rel="noopener noreferrer">Mixamo — Rigging &amp; Motion</a>
-        </div>
-        <div class="bookmark-item">
-          <span class="bookmark-icon"><i class="fas fa-brain"></i></span>
-          <a href="https://huggingface.co/spaces/microsoft/TRELLIS.2" target="_blank" rel="noopener noreferrer">Microsoft TRELLIS.2 — 3D Gen</a>
-        </div>
-        <div class="bookmark-item">
-          <span class="bookmark-icon"><i class="fas fa-search"></i></span>
-          <a href="https://sketchfab.com/search?features=downloadable&q=person&type=models" target="_blank" rel="noopener noreferrer">Sketchfab — 3D Models</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Category 2 -->
-    <div class="glass-card resource-category">
-      <div class="category-title">
-        <i class="fas fa-palette"></i> Textures &amp; Materials
-        <span class="badge">2</span>
-      </div>
-      <div class="bookmark-grid">
-        <div class="bookmark-item">
-          <span class="bookmark-icon"><i class="fas fa-image"></i></span>
-          <a href="https://polyhaven.com/" target="_blank" rel="noopener noreferrer">Poly Haven — PBR Textures &amp; HDRIs</a>
-        </div>
-        <div class="bookmark-item">
-          <span class="bookmark-icon"><i class="fas fa-th"></i></span>
-          <a href="https://ambientcg.com/" target="_blank" rel="noopener noreferrer">ambientCG — CC0 Materials</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Category 3 -->
-    <div class="glass-card resource-category">
-      <div class="category-title">
-        <i class="fas fa-tools"></i> Tools &amp; Converters
-        <span class="badge">2</span>
-      </div>
-      <div class="bookmark-grid">
-        <div class="bookmark-item">
-          <span class="bookmark-icon"><i class="fas fa-exchange-alt"></i></span>
-          <a href="https://hunyuanmotion.org/free-tools/3d-converter/glb-to-obj" target="_blank" rel="noopener noreferrer">GLB to OBJ Converter</a>
-        </div>
-        <div class="bookmark-item">
-          <span class="bookmark-icon"><i class="fas fa-code"></i></span>
-          <a href="https://github.com/Chatgpt-dev/my-bookmarks/blob/main/index.html" target="_blank" rel="noopener noreferrer">My Bookmark Index — GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- No Results -->
-    <div id="noResults" class="no-results">
-      <i class="fas fa-box-open"></i>
-      No matching resources found.
     </div>
 
     <!-- Footer -->
@@ -393,6 +324,97 @@
   </div>
 
   <script>
+    // ─── CONFIGURATION ──────────────────────────────────────
+    // Your Google Sheet CSV URL
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8Uvdq-_DOC-8rSYUPaLUTxpCBO1HlGG9S3VnRjkPWXqnFKHuhvHVjyKn0_TK7_bNqMlUJCWP7pGy_/pub?output=csv';
+    // ────────────────────────────────────────────────────────
+
+    // ─── FETCH & DISPLAY ──────────────────────────────────
+    async function loadBookmarks() {
+      const container = document.getElementById('bookmarksContainer');
+
+      try {
+        const response = await fetch(CSV_URL);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const csvText = await response.text();
+
+        const lines = csvText.split('\n').filter(line => line.trim() !== '');
+        if (lines.length < 2) {
+          container.innerHTML = `
+            <div class="no-results">
+              <i class="fas fa-box-open"></i>
+              No bookmarks found. Add some via Telegram!
+            </div>
+          `;
+          return;
+        }
+
+        // Parse CSV (headers: Title, URL, Category, Added By, Date)
+        const bookmarks = [];
+        for (let i = 1; i < lines.length; i++) {
+          const columns = lines[i].split(',');
+          if (columns.length >= 3) {
+            const title = columns[0].trim();
+            const url = columns[1].trim();
+            const category = columns[2].trim();
+            if (title && url && category) {
+              bookmarks.push({ title, url, category });
+            }
+          }
+        }
+
+        if (bookmarks.length === 0) {
+          container.innerHTML = `
+            <div class="no-results">
+              <i class="fas fa-box-open"></i>
+              No valid bookmarks found. Check your sheet data.
+            </div>
+          `;
+          return;
+        }
+
+        // Group by category
+        const categories = {};
+        bookmarks.forEach(bm => {
+          if (!categories[bm.category]) categories[bm.category] = [];
+          categories[bm.category].push(bm);
+        });
+
+        // Render
+        let html = '';
+        for (const [category, items] of Object.entries(categories)) {
+          html += `
+            <div class="glass-card resource-category" data-category="${category}">
+              <div class="category-title">
+                <i class="fas fa-link"></i>
+                ${category}
+                <span class="badge">${items.length}</span>
+              </div>
+              <div class="bookmark-grid">
+                ${items.map(item => `
+                  <div class="bookmark-item">
+                    <span class="bookmark-icon"><i class="fas fa-link"></i></span>
+                    <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.title}</a>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+        container.innerHTML = html;
+
+      } catch (error) {
+        console.error('Error loading bookmarks:', error);
+        container.innerHTML = `
+          <div class="no-results">
+            <i class="fas fa-exclamation-triangle"></i>
+            Failed to load bookmarks: ${error.message}
+          </div>
+        `;
+      }
+    }
+
+    // ─── SEARCH FILTER ─────────────────────────────────────
     function filterBookmarks() {
       const input = document.getElementById('searchInput').value.toLowerCase();
       const items = document.querySelectorAll('.bookmark-item');
@@ -417,8 +439,14 @@
         category.style.display = (categoryVisibleCount === 0) ? "none" : "block";
       });
 
-      document.getElementById('noResults').style.display = (totalVisible === 0) ? "block" : "none";
+      const noResults = document.querySelector('.no-results');
+      if (noResults) {
+        noResults.style.display = (totalVisible === 0 && input.length > 0) ? "block" : "none";
+      }
     }
+
+    // ─── LOAD ON START ─────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', loadBookmarks);
   </script>
 
 </body>
