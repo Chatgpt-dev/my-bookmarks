@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Modeling Bookmarks</title>
+  <title>3D Resources — Bookmark Hub</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   
   <style>
     /* --- Reset & Base --- */
@@ -26,10 +26,11 @@
       font-family: 'Inter', 'Segoe UI', sans-serif;
       min-height: 100vh;
       padding: 2rem;
-      background: linear-gradient(145deg, #f5f7fa 0%, #e9edf5 100%);
+      background: linear-gradient(180deg, #0b0f1a 0%, #1a1e2f 40%, #2d1b3d 70%, #1a0e1e 100%);
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      color: #e8e8f0;
     }
 
     .container {
@@ -37,7 +38,7 @@
       width: 100%;
     }
 
-    /* --- Header --- */
+    /* --- Header (Hulu Style) --- */
     .header-group {
       display: flex;
       justify-content: space-between;
@@ -45,6 +46,7 @@
       flex-wrap: wrap;
       gap: 1.5rem;
       margin-bottom: 2.5rem;
+      padding: 0 0.5rem;
     }
 
     .header-left {
@@ -55,31 +57,46 @@
 
     .header-left .logo-icon {
       font-size: 2.2rem;
-      color: #5b47b0;
-      background: rgba(91, 71, 176, 0.12);
-      padding: 0.7rem;
-      border-radius: 1rem;
-      backdrop-filter: blur(10px);
+      color: #e8e8f0;
+      background: linear-gradient(135deg, #6c5b7b, #3a1c3a);
+      padding: 0.7rem 0.9rem;
+      border-radius: 0.8rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
     }
 
     h1 {
-      color: #1a1a2e;
-      font-weight: 600;
-      font-size: 2rem;
+      font-weight: 700;
+      font-size: 1.8rem;
       letter-spacing: -0.5px;
+      color: #ffffff;
+      line-height: 1.2;
     }
 
     h1 span {
       font-weight: 300;
-      color: #5b47b0;
+      color: #a890b8;
+      font-size: 1.4rem;
     }
 
-    /* --- Search Bar (White Glass) --- */
+    .brand-tagline {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: #8a7a9a;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* --- Search Bar (Hulu Inspired) --- */
     .search-box {
       position: relative;
-      min-width: 280px;
+      min-width: 260px;
       flex-grow: 1;
-      max-width: 420px;
+      max-width: 400px;
     }
 
     .search-box i {
@@ -87,113 +104,118 @@
       left: 1rem;
       top: 50%;
       transform: translateY(-50%);
-      color: #8a8aa0;
+      color: #6a5a7a;
       font-size: 0.95rem;
     }
 
     .search-box input {
       width: 100%;
-      padding: 0.85rem 1.25rem 0.85rem 2.8rem;
-      border-radius: 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      color: #1a1a2e;
-      font-size: 0.95rem;
+      padding: 0.8rem 1.25rem 0.8rem 2.8rem;
+      border-radius: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #f0ecf4;
+      font-size: 0.9rem;
       font-family: 'Inter', sans-serif;
       outline: none;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
     .search-box input::placeholder {
-      color: #8a8aa0;
+      color: #5a4a6a;
       font-weight: 300;
     }
 
     .search-box input:focus {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: #b8a8f0;
-      box-shadow: 0 8px 30px rgba(91, 71, 176, 0.12);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(168, 144, 184, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(168, 144, 184, 0.1);
     }
 
-    /* --- Glassmorphism Card (White Theme) --- */
+    /* --- Glassmorphism Card (Dark Hulu Style) --- */
     .glass-card {
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-radius: 2rem;
-      padding: 2rem 2.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 1.5rem;
+      padding: 1.8rem 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.6);
       margin-bottom: 1.8rem;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .glass-card:hover {
       transform: translateY(-2px);
+      box-shadow: 0 25px 70px -12px rgba(0, 0, 0, 0.7);
     }
 
     .category-title {
-      color: #1a1a2e;
-      font-size: 1.3rem;
+      color: #f0ecf4;
+      font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      border-bottom: 2px solid rgba(91, 71, 176, 0.10);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       padding-bottom: 0.8rem;
+      letter-spacing: -0.2px;
     }
 
     .category-title i {
-      color: #5b47b0;
-      font-size: 1.4rem;
+      color: #a890b8;
+      font-size: 1.3rem;
       width: 2rem;
+      text-shadow: 0 0 20px rgba(168, 144, 184, 0.2);
     }
 
     .category-title .badge {
-      background: rgba(91, 71, 176, 0.10);
-      color: #5b47b0;
-      font-size: 0.7rem;
+      background: rgba(168, 144, 184, 0.12);
+      color: #b8a0c8;
+      font-size: 0.65rem;
       font-weight: 600;
-      padding: 0.15rem 0.7rem;
-      border-radius: 1rem;
+      padding: 0.1rem 0.8rem;
+      border-radius: 2rem;
       margin-left: auto;
+      letter-spacing: 0.5px;
     }
 
     .bookmark-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 0.9rem;
     }
 
-    /* --- Bookmark Item (White Glass) --- */
+    /* --- Bookmark Item (Hulu Style Tile) --- */
     .bookmark-item {
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 0.9rem 1.2rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 0.85rem 1.2rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
       transition: all 0.25s ease;
       display: flex;
       align-items: center;
       gap: 0.9rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      cursor: default;
     }
 
     .bookmark-item:hover {
-      background: rgba(255, 255, 255, 0.85);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px -8px rgba(91, 71, 176, 0.15);
-      border-color: rgba(91, 71, 176, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.4);
+      border-color: rgba(168, 144, 184, 0.15);
     }
 
     .bookmark-icon {
-      font-size: 1.2rem;
-      color: #5b47b0;
+      font-size: 1.1rem;
+      color: #a890b8;
       width: 2rem;
       text-align: center;
       flex-shrink: 0;
@@ -201,23 +223,24 @@
     }
 
     .bookmark-item a {
-      color: #1a1a2e;
+      color: #e8e8f0;
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       transition: color 0.2s;
       line-height: 1.4;
+      flex: 1;
     }
 
     .bookmark-item a:hover {
-      color: #5b47b0;
+      color: #d4c0e0;
     }
 
     .bookmark-item .url-hint {
       font-weight: 400;
-      color: #8a8aa0;
-      font-size: 0.7rem;
-      margin-left: auto;
+      color: #5a4a6a;
+      font-size: 0.65rem;
+      letter-spacing: 0.3px;
       white-space: nowrap;
       opacity: 0.6;
     }
@@ -225,72 +248,81 @@
     /* --- No Results --- */
     .no-results {
       display: none;
-      color: #8a8aa0;
+      color: #6a5a7a;
       text-align: center;
       padding: 2.5rem;
       font-style: italic;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.03);
       border-radius: 1.5rem;
       backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .no-results i {
       font-size: 2rem;
       display: block;
       margin-bottom: 0.5rem;
-      color: #b8a8f0;
+      color: #5a4a6a;
     }
 
     /* --- Footer --- */
     .footer {
       text-align: center;
-      color: #8a8aa0;
-      font-size: 0.8rem;
-      letter-spacing: 0.3px;
-      margin-top: 1.5rem;
+      color: #4a3a5a;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      margin-top: 2rem;
       padding: 1rem;
       font-weight: 400;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .footer i {
-      color: #d4c8f5;
-      margin: 0 0.25rem;
+      color: #5a4a6a;
+      margin: 0 0.3rem;
     }
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
       body { padding: 1.2rem; }
-      .glass-card { padding: 1.5rem; }
+      .glass-card { padding: 1.2rem 1.2rem; }
       h1 { font-size: 1.4rem; }
-      .header-left .logo-icon { font-size: 1.6rem; padding: 0.5rem; }
-      .header-group { flex-direction: column; align-items: stretch; }
+      h1 span { font-size: 1.1rem; }
+      .header-left .logo-icon { font-size: 1.6rem; padding: 0.5rem 0.7rem; }
+      .brand-tagline { font-size: 0.6rem; }
+      .header-group { flex-direction: column; align-items: stretch; gap: 1rem; }
       .search-box { max-width: 100%; min-width: 0; }
       .bookmark-grid { grid-template-columns: 1fr; }
       .bookmark-item .url-hint { display: none; }
     }
 
     @media (max-width: 480px) {
-      .glass-card { padding: 1rem; border-radius: 1.2rem; }
-      .category-title { font-size: 1.1rem; }
+      .glass-card { padding: 1rem; border-radius: 1rem; }
+      .category-title { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Header -->
+    <!-- Header: Hulu Style -->
     <div class="header-group">
       <div class="header-left">
-        <i class="fas fa-cube logo-icon"></i>
-        <h1>3D <span>Resources</span></h1>
+        <div class="logo-icon">
+          <i class="fas fa-cube"></i>
+        </div>
+        <div class="brand">
+          <h1>3D <span>Resources</span></h1>
+          <div class="brand-tagline">Bookmark Hub</div>
+        </div>
       </div>
       <div class="search-box">
         <i class="fas fa-search"></i>
-        <input type="text" id="searchInput" placeholder="Search bookmarks..." onkeyup="filterBookmarks()">
+        <input type="text" id="searchInput" placeholder="Search resources..." onkeyup="filterBookmarks()">
       </div>
     </div>
 
-    <!-- Category 1: AI & Interactive Asset Generation -->
+    <!-- Category 1 -->
     <div class="glass-card resource-category">
       <div class="category-title">
         <i class="fas fa-robot"></i> AI &amp; Asset Generators
@@ -299,20 +331,20 @@
       <div class="bookmark-grid">
         <div class="bookmark-item">
           <span class="bookmark-icon"><i class="fas fa-user-astronaut"></i></span>
-          <a href="https://www.mixamo.com/" target="_blank" rel="noopener noreferrer">Mixamo — Character Rigging &amp; Motion</a>
+          <a href="https://www.mixamo.com/" target="_blank" rel="noopener noreferrer">Mixamo — Rigging &amp; Motion</a>
         </div>
         <div class="bookmark-item">
           <span class="bookmark-icon"><i class="fas fa-brain"></i></span>
-          <a href="https://huggingface.co/spaces/microsoft/TRELLIS.2" target="_blank" rel="noopener noreferrer">Microsoft TRELLIS.2 — 3D Generation</a>
+          <a href="https://huggingface.co/spaces/microsoft/TRELLIS.2" target="_blank" rel="noopener noreferrer">Microsoft TRELLIS.2 — 3D Gen</a>
         </div>
         <div class="bookmark-item">
           <span class="bookmark-icon"><i class="fas fa-search"></i></span>
-          <a href="https://sketchfab.com/search?features=downloadable&q=person&type=models" target="_blank" rel="noopener noreferrer">Sketchfab — Downloadable 3D Models</a>
+          <a href="https://sketchfab.com/search?features=downloadable&q=person&type=models" target="_blank" rel="noopener noreferrer">Sketchfab — 3D Models</a>
         </div>
       </div>
     </div>
 
-    <!-- Category 2: Textures & Materials -->
+    <!-- Category 2 -->
     <div class="glass-card resource-category">
       <div class="category-title">
         <i class="fas fa-palette"></i> Textures &amp; Materials
@@ -321,16 +353,16 @@
       <div class="bookmark-grid">
         <div class="bookmark-item">
           <span class="bookmark-icon"><i class="fas fa-image"></i></span>
-          <a href="https://polyhaven.com/" target="_blank" rel="noopener noreferrer">Poly Haven — Free PBR Textures &amp; HDRIs</a>
+          <a href="https://polyhaven.com/" target="_blank" rel="noopener noreferrer">Poly Haven — PBR Textures &amp; HDRIs</a>
         </div>
         <div class="bookmark-item">
           <span class="bookmark-icon"><i class="fas fa-th"></i></span>
-          <a href="https://ambientcg.com/" target="_blank" rel="noopener noreferrer">ambientCG — CC0 Public Domain Materials</a>
+          <a href="https://ambientcg.com/" target="_blank" rel="noopener noreferrer">ambientCG — CC0 Materials</a>
         </div>
       </div>
     </div>
 
-    <!-- Category 3: Tools & Converters -->
+    <!-- Category 3 -->
     <div class="glass-card resource-category">
       <div class="category-title">
         <i class="fas fa-tools"></i> Tools &amp; Converters
@@ -339,7 +371,7 @@
       <div class="bookmark-grid">
         <div class="bookmark-item">
           <span class="bookmark-icon"><i class="fas fa-exchange-alt"></i></span>
-          <a href="https://hunyuanmotion.org/free-tools/3d-converter/glb-to-obj" target="_blank" rel="noopener noreferrer">GLB to OBJ Converter — HunyuanMotion</a>
+          <a href="https://hunyuanmotion.org/free-tools/3d-converter/glb-to-obj" target="_blank" rel="noopener noreferrer">GLB to OBJ Converter</a>
         </div>
         <div class="bookmark-item">
           <span class="bookmark-icon"><i class="fas fa-code"></i></span>
@@ -348,7 +380,7 @@
       </div>
     </div>
 
-    <!-- No Results Message -->
+    <!-- No Results -->
     <div id="noResults" class="no-results">
       <i class="fas fa-box-open"></i>
       No matching resources found.
