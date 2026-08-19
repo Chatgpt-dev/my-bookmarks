@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Modeling Bookmarks</title>
+  <style>
+    /* --- Reset & Base --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      background: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    h1 {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 300;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      border-left: 4px solid #a78bfa;
+      padding-left: 1.5rem;
+    }
+
+    /* --- Glassmorphism Card --- */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease;
+    }
+
+    .glass-card:hover {
+      transform: scale(1.01);
+    }
+
+    .category-title {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 1rem;
+    }
+
+    .bookmark-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* --- Individual Bookmark Items --- */
+    .bookmark-item {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 1rem 1.5rem;
+      border-radius: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .bookmark-item:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.4);
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+
+    .bookmark-icon {
+      font-size: 1.5rem;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .bookmark-item a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1rem;
+      transition: color 0.2s;
+      word-break: break-word;
+      line-height: 1.4;
+    }
+
+    .bookmark-item a:hover {
+      color: #c4b5fd;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .glass-card { padding: 1.5rem; }
+      h1 { font-size: 1.8rem; padding-left: 1rem; }
+      .category-title { font-size: 1.4rem; }
+      .bookmark-grid { grid-template-columns: 1fr; }
+    }
+
+    /* --- Footer --- */
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧊 3D Modeling Resources</h1>
+
+    <div class="glass-card">
+      <div class="category-title">
+        <span>📂</span> Modeling &amp; Assets
+      </div>
+
+      <div class="bookmark-grid">
+        <!-- Bookmark 1 -->
+        <div class="bookmark-item">
+          <span class="bookmark-icon">🕺</span>
+          <a href="https://www.mixamo.com/" target="_blank" rel="noopener noreferrer">
+            Mixamo - 3D Character Animation
+          </a>
+        </div>
+
+        <!-- Bookmark 2 -->
+        <div class="bookmark-item">
+          <span class="bookmark-icon">🤖</span>
+          <a href="https://huggingface.co/spaces/microsoft/TRELLIS.2" target="_blank" rel="noopener noreferrer">
+            TRELLIS.2 by Microsoft (Hugging Face)
+          </a>
+        </div>
+
+        <!-- Bookmark 3 -->
+        <div class="bookmark-item">
+          <span class="bookmark-icon">🔄</span>
+          <a href="https://hunyuanmotion.org/free-tools/3d-converter/glb-to-obj" target="_blank" rel="noopener noreferrer">
+            Free GLB to OBJ Converter (HunyuanMotion)
+          </a>
+        </div>
+
+        <!-- Bookmark 4 -->
+        <div class="bookmark-item">
+          <span class="bookmark-icon">🔍</span>
+          <a href="https://sketchfab.com/search?features=downloadable&q=person&type=models" target="_blank" rel="noopener noreferrer">
+            Sketchfab - Downloadable 3D Models
+          </a>
+        </div>
+
+        <!-- Bookmark 5 -->
+        <div class="bookmark-item">
+          <span class="bookmark-icon">📂</span>
+          <a href="https://github.com/Chatgpt-dev/my-bookmarks/blob/main/index.html" target="_blank" rel="noopener noreferrer">
+            My Bookmark Index (GitHub)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      ✦ Your collection of 3D tools &amp; assets ✦
+    </div>
+  </div>
+</body>
+</html>
