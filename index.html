@@ -27,15 +27,55 @@
       width: 100%;
     }
 
+    .header-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
     h1 {
       color: rgba(255, 255, 255, 0.9);
       font-weight: 300;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       letter-spacing: 1px;
-      margin-bottom: 2.5rem;
       text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       border-left: 4px solid #a78bfa;
-      padding-left: 1.5rem;
+      padding-left: 1.25rem;
+    }
+
+    /* --- Search Bar --- */
+    .search-box {
+      position: relative;
+      min-width: 280px;
+      flex-grow: 1;
+      max-width: 400px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .search-box input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .search-box input:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #a78bfa;
+      box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
     }
 
     /* --- Glassmorphism Card --- */
@@ -47,23 +87,19 @@
       padding: 2.5rem;
       border: 1px solid rgba(255, 255, 255, 0.15);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      transition: transform 0.2s ease;
-    }
-
-    .glass-card:hover {
-      transform: scale(1.01);
+      margin-bottom: 2rem;
     }
 
     .category-title {
       color: rgba(255, 255, 255, 0.9);
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: 500;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 1rem;
+      padding-bottom: 0.8rem;
     }
 
     .bookmark-grid {
@@ -72,12 +108,12 @@
       gap: 1.25rem;
     }
 
-    /* --- Individual Bookmark Items --- */
+    /* --- Bookmark Item --- */
     .bookmark-item {
       background: rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.25rem;
       border-radius: 1.2rem;
       border: 1px solid rgba(255, 255, 255, 0.08);
       transition: all 0.25s ease;
@@ -94,8 +130,8 @@
     }
 
     .bookmark-icon {
-      font-size: 1.5rem;
-      opacity: 0.7;
+      font-size: 1.4rem;
+      opacity: 0.85;
       flex-shrink: 0;
     }
 
@@ -103,7 +139,7 @@
       color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
       font-weight: 400;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: color 0.2s;
       word-break: break-word;
       line-height: 1.4;
@@ -111,84 +147,139 @@
 
     .bookmark-item a:hover {
       color: #c4b5fd;
-      text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    /* --- Responsive --- */
-    @media (max-width: 640px) {
-      body { padding: 1rem; }
-      .glass-card { padding: 1.5rem; }
-      h1 { font-size: 1.8rem; padding-left: 1rem; }
-      .category-title { font-size: 1.4rem; }
-      .bookmark-grid { grid-template-columns: 1fr; }
+    .no-results {
+      display: none;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      padding: 2rem;
+      font-style: italic;
     }
 
-    /* --- Footer --- */
     .footer {
-      margin-top: 3rem;
       text-align: center;
       color: rgba(255, 255, 255, 0.3);
       font-size: 0.85rem;
       letter-spacing: 0.5px;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .glass-card { padding: 1.5rem; }
+      h1 { font-size: 1.6rem; }
+      .header-group { flex-direction: column; align-items: stretch; }
+      .search-box { max-width: 100%; }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <h1>🧊 3D Modeling Resources</h1>
-
-    <div class="glass-card">
-      <div class="category-title">
-        <span>📂</span> Modeling &amp; Assets
+    <div class="header-group">
+      <h1>🧊 3D Modeling Resources</h1>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search resources..." onkeyup="filterBookmarks()">
       </div>
+    </div>
 
+    <!-- Category 1: AI & Interactive Asset Generation -->
+    <div class="glass-card resource-category">
+      <div class="category-title">
+        <span>🤖</span> AI &amp; Asset Generators
+      </div>
       <div class="bookmark-grid">
-        <!-- Bookmark 1 -->
         <div class="bookmark-item">
           <span class="bookmark-icon">🕺</span>
-          <a href="https://www.mixamo.com/" target="_blank" rel="noopener noreferrer">
-            Mixamo - 3D Character Animation
-          </a>
+          <a href="https://www.mixamo.com/" target="_blank" rel="noopener noreferrer">Mixamo - Character Rigging &amp; Motion</a>
         </div>
-
-        <!-- Bookmark 2 -->
         <div class="bookmark-item">
-          <span class="bookmark-icon">🤖</span>
-          <a href="https://huggingface.co/spaces/microsoft/TRELLIS.2" target="_blank" rel="noopener noreferrer">
-            TRELLIS.2 by Microsoft (Hugging Face)
-          </a>
+          <span class="bookmark-icon">⚡</span>
+          <a href="https://huggingface.co/spaces/microsoft/TRELLIS.2" target="_blank" rel="noopener noreferrer">Microsoft TRELLIS.2 (3D Gen)</a>
         </div>
-
-        <!-- Bookmark 3 -->
-        <div class="bookmark-item">
-          <span class="bookmark-icon">🔄</span>
-          <a href="https://hunyuanmotion.org/free-tools/3d-converter/glb-to-obj" target="_blank" rel="noopener noreferrer">
-            Free GLB to OBJ Converter (HunyuanMotion)
-          </a>
-        </div>
-
-        <!-- Bookmark 4 -->
         <div class="bookmark-item">
           <span class="bookmark-icon">🔍</span>
-          <a href="https://sketchfab.com/search?features=downloadable&q=person&type=models" target="_blank" rel="noopener noreferrer">
-            Sketchfab - Downloadable 3D Models
-          </a>
-        </div>
-
-        <!-- Bookmark 5 -->
-        <div class="bookmark-item">
-          <span class="bookmark-icon">📂</span>
-          <a href="https://github.com/Chatgpt-dev/my-bookmarks/blob/main/index.html" target="_blank" rel="noopener noreferrer">
-            My Bookmark Index (GitHub)
-          </a>
+          <a href="https://sketchfab.com/search?features=downloadable&q=person&type=models" target="_blank" rel="noopener noreferrer">Sketchfab 3D Directory</a>
         </div>
       </div>
     </div>
 
+    <!-- Category 2: Textures & Materials -->
+    <div class="glass-card resource-category">
+      <div class="category-title">
+        <span>🎨</span> Textures &amp; Materials
+      </div>
+      <div class="bookmark-grid">
+        <div class="bookmark-item">
+          <span class="bookmark-icon">🌐</span>
+          <a href="https://polyhaven.com/" target="_blank" rel="noopener noreferrer">Poly Haven - Free PBR Textures &amp; HDRIs</a>
+        </div>
+        <div class="bookmark-item">
+          <span class="bookmark-icon">🧱</span>
+          <a href="https://ambientcg.com/" target="_blank" rel="noopener noreferrer">ambientCG - CC0 Public Domain Materials</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 3: Tools & Converters -->
+    <div class="glass-card resource-category">
+      <div class="category-title">
+        <span>🛠️</span> Tools &amp; Converters
+      </div>
+      <div class="bookmark-grid">
+        <div class="bookmark-item">
+          <span class="bookmark-icon">🔄</span>
+          <a href="https://hunyuanmotion.org/free-tools/3d-converter/glb-to-obj" target="_blank" rel="noopener noreferrer">GLB to OBJ Converter (HunyuanMotion)</a>
+        </div>
+        <div class="bookmark-item">
+          <span class="bookmark-icon">📂</span>
+          <a href="https://github.com/Chatgpt-dev/my-bookmarks/blob/main/index.html" target="_blank" rel="noopener noreferrer">My Bookmark Index (GitHub)</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="noResults" class="no-results">No matching resources found.</div>
+
     <div class="footer">
-      ✦ Your collection of 3D tools &amp; assets ✦
+      ✦ Personal 3D Workflow Collection ✦
     </div>
   </div>
+
+  <script>
+    function filterBookmarks() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const items = document.querySelectorAll('.bookmark-item');
+      const categories = document.querySelectorAll('.resource-category');
+      let totalVisible = 0;
+
+      categories.forEach(category => {
+        let categoryVisibleCount = 0;
+        const categoryItems = category.querySelectorAll('.bookmark-item');
+
+        categoryItems.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          if (text.includes(input)) {
+            item.style.display = "flex";
+            categoryVisibleCount++;
+            totalVisible++;
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        // Hide category card if all children are filtered out
+        if (categoryVisibleCount === 0) {
+          category.style.display = "none";
+        } else {
+          category.style.display = "block";
+        }
+      });
+
+      const noResultsMsg = document.getElementById('noResults');
+      noResultsMsg.style.display = (totalVisible === 0) ? "block" : "none";
+    }
+  </script>
 </body>
 </html>
